@@ -1,0 +1,67 @@
+<html>
+    <title>
+        Make Movie Booking
+    </title>
+    <body>
+        <h2>==========Now Playing==========</h2>
+        <table>
+        <tr>
+            <th>Movie Name</th>
+            <th></th>
+            <th>Price(Rs.)</th>
+        </tr>
+        <tr>
+            <td>Movie1</td>
+                <td> - </td>
+            <td>700.00</td>
+        </tr>
+        <tr>
+            <td>Movie2</td>
+                <td> - </td>
+            <td>700.00</td>
+        </tr>
+        <tr>
+            <td>Movie3</td>
+                <td> - </td>
+            <td>700.00</td>
+        </tr>
+        </table>
+        <br>
+
+        <form name="tblform" action="/viewmovieticket" method="post" enctype="multipart/form-data">
+            <table>
+            <tr>
+                <td>Username:</td>
+                <td>
+                    <input type="text" name="username">
+                </td>
+            </tr>
+            </table>
+            <br>
+            <table>
+            <tr>
+                <th>Movie Name</th>
+                <th>Quantity</th>
+            </tr>
+                <tr>
+                <td>
+                    <select id="name" name="name">
+                    <option value="0">--Select Item--</option>
+                    <option value="Movie1">Movie1</option>
+                    <option value="Movie2">Movie2</option>
+                    <option value="Movie3">Movie3</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="number" value="0" id="quantity" name="moviequant">
+                </td>
+                </tr>
+            </table>
+            <button type="submit" value="submit">Submit</button>
+        </form>
+
+        <form method="post" action="/">
+            <button type="submit">Home Page</button>
+        </form>
+    </body>
+</html>
