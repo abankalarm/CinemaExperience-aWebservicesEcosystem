@@ -9,6 +9,12 @@
     <h1>{{message}}</h1>
     accesss token is {{access_token}} refresh token is {{refresh_token}}
     <h3>Select Movie Booking or Food Ordering:-</h3>
+    <form action="/logout" method="post" enctype="multipart/form-data">
+        <input type="hidden" id="jwt" name="jwt" value="{{access_token}}">
+        <input type="submit" value="Log Out">
+    </form>
+
+
     <form action="/bookOrOrder" method="post" enctype="multipart/form-data">
         <input type="radio" id="moviebooking" name="choosing" value="movie">
         <label for="moviebooking">Movie Booking</label><br>

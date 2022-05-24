@@ -9,6 +9,8 @@ import requests
 app = Flask(__name__)
 
 authservice_url = "http://127.0.0.1:5000"
+booking_url = "http://127.0.0.1:4500"
+
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
@@ -21,7 +23,6 @@ def index1():
     password = request.form['password']
     response = requests.post(authservice_url + '/login', data = {'username':username, 'password' : password})
     response = response.json()
-    print(type(response["access_token"]))
     try:
         if(len(response["access_token"])>10):
             access_token = response["access_token"]
@@ -30,7 +31,7 @@ def index1():
             print("got here")
             message = response["message"]
             print("got here")
-            return render_template('homepage.html', access_token = response["access_token"], refresh_token = response["refresh_token"], message = response["message"])
+            return render_template('homePage.html', access_token = response["access_token"], refresh_token = response["refresh_token"], message = response["message"])
     except:    
         return render_template('login.html', message = "Login failed")
 
@@ -43,9 +44,19 @@ def register():
     print(response)
     try:
         if(len(response["access_token"])>10):
-            return render_template('homepage.html', access_token = response["access_token"], refresh_token = response["refresh_token"], message = response["message"])
+            return render_template('homePage.html', access_token = response["access_token"], refresh_token = response["refresh_token"], message = response["message"])
     except:    
         return render_template('login.html', message = "Login failed")
+
+@app.route("/logout", methods=['POST'])
+def logout():
+    jwt = request.form['jwt']
+    headers = {'Authorization': 'Bearer '+jwt}
+    response = requests.post(authservice_url + '/logout/access', headers=headers)
+    response = response.json()
+    print(response)
+    return render_template('login.html', message = response)
+
 
 @app.route("/viewfoodorder", methods=['POST', 'GET'])
 def index2():
