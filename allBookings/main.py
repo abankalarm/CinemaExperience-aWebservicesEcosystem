@@ -16,25 +16,25 @@ def index1():
         return render_template('makeBooking.html')
 
 
-@app.route("/viewfoodorder", methods=['POST', 'GET'])
-def index2():
-    # print(request.form)
+@app.route("/api/foodorder/insert", methods=['POST'])
+def insertfood():
     fdb = TinyDB(r'/dbase/fooddb.json')
     userName = str(request.form["username"])
     abc = {'username':userName, 'Popcorn': int(request.form["Popcorn"]), 'Coke': int(request.form["Coke"]),
            'Nachos': int(request.form["Nachos"])}
-    #print(abc)
     fdb.insert(abc)
     User = Query()
-    testing1= fdb.search(User.username == 'admin')
-    # pendingOrders = {(k, v) for k, v in abc.items() if v > 0}
-    # #print(pendingOrders)
-    # if pendingOrders != set():
-    # return render_template('viewOrder.html', abc=userName, it1q=abc['Popcorn'],
-    #                            it2q=abc['Coke'], it3q=abc['Nachos'], db=abc)#, po=pendingOrders)
-    # # else:
-    # #     return render_template('Error.html')
+    testing1= fdb.search(User.username == userName)
     return jsonify(testing1)
+
+@app.route("/api/foodorder/view", methods=['POST', 'GET'])
+def viewfood():
+    fdb = TinyDB(r'/dbase/fooddb.json')
+    userName = str(request.form["username"])
+    User = Query()
+    testing1= fdb.search(User.username == 'admin')
+    return jsonify(testing1)
+
 
 @app.route("/viewmovieticket", methods=['POST', 'GET'])
 def index3():
@@ -55,4 +55,4 @@ def index3():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=4500)

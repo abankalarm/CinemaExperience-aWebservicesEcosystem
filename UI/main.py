@@ -72,6 +72,15 @@ def index2():
         return render_template('Error.html')
 
 
+@app.route("/movie/buy", methods=['POST'])
+def index3():
+    username = request.form["username"]
+    mName, mQuant = request.form["name"], int(request.form["moviequant"])
+    if mQuant > 0:
+        return render_template('viewBooking.html', abc=username, mn=mName, mq=mQuant)
+    else:
+        return render_template('Error.html')
+
 @app.route("/viewmovieticket", methods=['POST', 'GET'])
 def index3():
     # print(request.form)
