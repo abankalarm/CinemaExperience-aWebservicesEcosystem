@@ -1,19 +1,51 @@
+from email import message
+import json
+from os import access
+from urllib import request
 from flask import *
+import requests
+
 
 app = Flask(__name__)
 
+authservice_url = "http://127.0.0.1:5000"
+
 @app.route("/", methods=['POST', 'GET'])
 def index():
-    return render_template('homePage.html')
+    return render_template('login.html', message = "")
 
 
-@app.route("/bookOrOrder", methods=['POST', 'GET'])
+@app.route("/login", methods=['POST', 'GET'])
 def index1():
-    if request.form['choosing'] == 'food':
-        return render_template('makeOrder.html')
-    elif request.form['choosing'] == 'movie':
-        return render_template('makeBooking.html')
+    username = request.form['username']
+    password = request.form['password']
+    response = requests.post(authservice_url + '/login', data = {'username':username, 'password' : password})
+    response = response.json()
+    print(type(response["access_token"]))
+    try:
+        if(len(response["access_token"])>10):
+            access_token = response["access_token"]
+            print("got here")
+            refresh_token = response["refresh_token"]
+            print("got here")
+            message = response["message"]
+            print("got here")
+            return render_template('homepage.html', access_token = response["access_token"], refresh_token = response["refresh_token"], message = response["message"])
+    except:    
+        return render_template('login.html', message = "Login failed")
 
+@app.route("/register", methods=['POST'])
+def register():
+    username = request.form['username']
+    password = request.form['password']
+    response = requests.post(authservice_url + '/registration', data = {'username':username, 'password' : password})
+    response = response.json()
+    print(response)
+    try:
+        if(len(response["access_token"])>10):
+            return render_template('homepage.html', access_token = response["access_token"], refresh_token = response["refresh_token"], message = response["message"])
+    except:    
+        return render_template('login.html', message = "Login failed")
 
 @app.route("/viewfoodorder", methods=['POST', 'GET'])
 def index2():
@@ -41,4 +73,4 @@ def index3():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port = 4000)

@@ -1,0 +1,25 @@
+<html>
+<title>
+    Home Page
+</title>
+
+<body>
+    <h1>Cinema Experience System</h1>
+    <h2>{{message}}</h2>
+    <h3>Please enter credentials to continue</h3>
+    <form action="/login" method="post" enctype="multipart/form-data">
+        <input type="text" id="username" name="username">
+        <input type="password" id="password" name="password">
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <br>
+    <h3>If not registered, register here</h3>
+    <form action="/register" method="post" enctype="multipart/form-data">
+        <input type="text" id="username" name="username">
+        <input type="password" id="password" name="password">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

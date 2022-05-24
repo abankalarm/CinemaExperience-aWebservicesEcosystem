@@ -2,6 +2,13 @@ from flask import *
 
 app = Flask(__name__)
 
+@app.route("/login", methods=['POST'])
+def index1():
+    if request.form['username'] == 'food':
+        return render_template('makeOrder.html')
+    elif request.form['choosing'] == 'movie':
+        return render_template('makeBooking.html')
+
 @app.route("/", methods=['POST', 'GET'])
 def index():
     return render_template('homePage.html')
