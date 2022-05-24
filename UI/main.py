@@ -4,6 +4,7 @@ from os import access
 from urllib import request
 from flask import *
 import requests
+from tinydb import TinyDB, Query
 
 
 app = Flask(__name__)
@@ -57,40 +58,48 @@ def logout():
     print(response)
     return render_template('login.html', message = response)
 
+@app.route("/bookOrOrder", methods=['POST', 'GET'])
+def index1():
+    if request.form['choosing'] == 'food':
+        return render_template('makeOrder.html')
+    elif request.form['choosing'] == 'movie':
+        return render_template('makeBooking.html')
 
 @app.route("/viewfoodorder", methods=['POST', 'GET'])
 def index2():
-    # print(request.form)
-    userName = request.form["username"]
-    abc = {'Popcorn': int(request.form["Popcorn"]), 'Coke': int(request.form["Coke"]),
+    fdb = TinyDB(r'/UI/dbase/fooddb.json')  # HANDLE ADDRESS LATER ON
+    userName = str(request.form["username"])
+    abc = {'username':userName, 'Popcorn': int(request.form["Popcorn"]), 'Coke': int(request.form["Coke"]),
            'Nachos': int(request.form["Nachos"])}
-    pendingOrders = {(k, v) for k, v in abc.items() if v > 0}
-    if pendingOrders != set():
-        return render_template('viewOrder.html', abc=userName, it1q=abc['Popcorn'],
-                               it2q=abc['Coke'], it3q=abc['Nachos'], po=pendingOrders)
-    else:
-        return render_template('Error.html')
+    #print(abc)
+    fdb.insert(abc)
+    User = Query()
+    testing1= fdb.search(User.username == userName)
+    return jsonify(testing1)
 
 
-@app.route("/movie/buy", methods=['POST'])
-def index3():
-    username = request.form["username"]
-    mName, mQuant = request.form["name"], int(request.form["moviequant"])
-    if mQuant > 0:
-        return render_template('viewBooking.html', abc=username, mn=mName, mq=mQuant)
-    else:
-        return render_template('Error.html')
+# @app.route("/movie/buy", methods=['POST'])
+# def index3():
+#     username = request.form["username"]
+#     mName, mQuant = request.form["name"], int(request.form["moviequant"])
+#     if mQuant > 0:
+#         return render_template('viewBooking.html', abc=username, mn=mName, mq=mQuant)
+#     else:
+#         return render_template('Error.html')
+
 
 @app.route("/viewmovieticket", methods=['POST', 'GET'])
 def index3():
-    # print(request.form)
+    mdb = TinyDB(r'/UI/dbase/moviedb.json')   # HANDLE ADDRESS LATER ON
     userName = request.form["username"]
     mName, mQuant = request.form["name"], int(request.form["moviequant"])
-    if mQuant > 0:
-        return render_template('viewBooking.html', abc=userName, mn=mName, mq=mQuant)
-    else:
-        return render_template('Error.html')
+    abc1 = {'username': userName, 'mname': mName, 'mquant': str(mQuant)}
+    mdb.insert(abc1)
+    User = Query()
+    testing = mdb.search(User.username == userName)
+    return jsonify(testing)
 
+##  viewBooking.html and viewOrder.html are currently not being used
 
 if __name__ == '__main__':
     app.run(debug=True, port = 4000)
