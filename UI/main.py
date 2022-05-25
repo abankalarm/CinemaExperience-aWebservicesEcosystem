@@ -59,14 +59,14 @@ def logout():
     return render_template('login.html', message = response)
 
 @app.route("/bookOrOrder", methods=['POST', 'GET'])
-def index1():
+def choice():
     if request.form['choosing'] == 'food':
         return render_template('makeOrder.html')
     elif request.form['choosing'] == 'movie':
         return render_template('makeBooking.html')
 
 @app.route("/viewfoodorder", methods=['POST', 'GET'])
-def index2():
+def viewfood():
     fdb = TinyDB(r'/UI/dbase/fooddb.json')  # HANDLE ADDRESS LATER ON
     userName = str(request.form["username"])
     abc = {'username':userName, 'Popcorn': int(request.form["Popcorn"]), 'Coke': int(request.form["Coke"]),
@@ -89,7 +89,7 @@ def index2():
 
 
 @app.route("/viewmovieticket", methods=['POST', 'GET'])
-def index3():
+def viewticket():
     mdb = TinyDB(r'/UI/dbase/moviedb.json')   # HANDLE ADDRESS LATER ON
     userName = request.form["username"]
     mName, mQuant = request.form["name"], int(request.form["moviequant"])
