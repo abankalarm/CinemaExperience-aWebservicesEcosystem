@@ -36,6 +36,7 @@ def index1():
     except:    
         return render_template('login.html', message = "Login failed")
 
+
 @app.route("/register", methods=['POST'])
 def register():
     username = request.form['username']
@@ -49,6 +50,7 @@ def register():
     except:    
         return render_template('login.html', message = "Login failed")
 
+
 @app.route("/logout", methods=['POST'])
 def logout():
     jwt = request.form['jwt']
@@ -58,6 +60,7 @@ def logout():
     print(response)
     return render_template('login.html', message = response)
 
+
 @app.route("/bookOrOrder", methods=['POST', 'GET'])
 def choice():
     if request.form['choosing'] == 'food':
@@ -65,39 +68,29 @@ def choice():
     elif request.form['choosing'] == 'movie':
         return render_template('makeBooking.html')
 
+
+@app.route("/insertfoodorder", methods=['POST', 'GET'])
+def viewfood():
+    viewfoodresult=request.form('/api/foodorder/view')
+    return render_template('viewOrder.html')
+
+
+@app.route("/insertmovieticket", methods=['POST', 'GET'])
+def viewticket():
+    viewmovieresult=request.form()
+    return render_template('viewBooking.html')
+
+
 @app.route("/viewfoodorder", methods=['POST', 'GET'])
 def viewfood():
-    fdb = TinyDB(r'/UI/dbase/fooddb.json')  # HANDLE ADDRESS LATER ON
-    userName = str(request.form["username"])
-    abc = {'username':userName, 'Popcorn': int(request.form["Popcorn"]), 'Coke': int(request.form["Coke"]),
-           'Nachos': int(request.form["Nachos"])}
-    #print(abc)
-    fdb.insert(abc)
-    User = Query()
-    testing1= fdb.search(User.username == userName)
-    return jsonify(testing1)
-
-
-# @app.route("/movie/buy", methods=['POST'])
-# def index3():
-#     username = request.form["username"]
-#     mName, mQuant = request.form["name"], int(request.form["moviequant"])
-#     if mQuant > 0:
-#         return render_template('viewBooking.html', abc=username, mn=mName, mq=mQuant)
-#     else:
-#         return render_template('Error.html')
+    viewfoodresult=request.form('/api/foodorder/view')
+    return render_template('viewOrder.html')
 
 
 @app.route("/viewmovieticket", methods=['POST', 'GET'])
 def viewticket():
-    mdb = TinyDB(r'/UI/dbase/moviedb.json')   # HANDLE ADDRESS LATER ON
-    userName = request.form["username"]
-    mName, mQuant = request.form["name"], int(request.form["moviequant"])
-    abc1 = {'username': userName, 'mname': mName, 'mquant': str(mQuant)}
-    mdb.insert(abc1)
-    User = Query()
-    testing = mdb.search(User.username == userName)
-    return jsonify(testing)
+    viewmovieresult=request.form()
+    return render_template('viewBooking.html')
 
 ##  viewBooking.html and viewOrder.html are currently not being used
 
