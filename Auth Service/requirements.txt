@@ -1,6 +1,6 @@
 Flask==1.0.3
 Flask-JWT-Extended==3.18.2
 Flask-RESTful==0.3.7
-Flask-SQLAlchemy==2.4.0
+Flask-SQLAlchemy==2.5.1
 passlib==1.7.1
 pyjwt==1.7.1
