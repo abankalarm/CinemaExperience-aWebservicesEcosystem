@@ -18,7 +18,7 @@ def index1():
 
 @app.route("/api/foodorder/insert", methods=['POST'])
 def insertfood():
-    fdb = TinyDB(r'C:\Users\sanya\Dekstop\CinemaExperience-aWebservicesEcosystem\allBookings\dbase\fooddb.json')
+    fdb = TinyDB(r'allBookings/dbase/fooddb.json')
     userName = str(request.form["username"])
     abc = {'username':userName, 'Popcorn': int(request.form["Popcorn"]), 'Coke': int(request.form["Coke"]),
            'Nachos': int(request.form["Nachos"])}
@@ -31,7 +31,7 @@ def insertfood():
 
 @app.route("/api/movieticket/insert", methods=['POST', 'GET'])
 def insertmovie():
-    mdb = TinyDB(r'C:\Users\sanya\Dekstop\CinemaExperience-aWebservicesEcosystem\allBookings\dbase\moviedb.json')
+    mdb = TinyDB(r'allBookings/dbase/moviedb.json')
     userName = request.form["username"]
     mName, mQuant = request.form["name"], int(request.form["moviequant"])
     abc1 = {'username': userName, 'mname': mName, 'mquant': str(mQuant)}
@@ -43,11 +43,11 @@ def insertmovie():
 
 
 @app.route("/api/foodorder/view", methods=['POST', 'GET'])
-def viewfood(username):
-    fdb = TinyDB(r'C:\Users\sanya\Dekstop\CinemaExperience-aWebservicesEcosystem\allBookings\dbase\fooddb.json')
-    #userName = request.form["username"]
+def viewfood():
+    fdb = TinyDB(r'allBookings/dbase/fooddb.json')
+    username = request.form["username"]
     User1 = Query()
-    testing1= fdb.search(User1.username == 'admin')
+    testing1= fdb.search(User1.username == username)
     return jsonify(testing1)
 
 
@@ -55,10 +55,10 @@ def viewfood(username):
 @app.route("/api/movieticket/view", methods=['POST', 'GET'])
 def viewmovie(username):
     # print(request.form)
-    mdb = TinyDB(r'C:\Users\sanya\Dekstop\CinemaExperience-aWebservicesEcosystem\allBookings\dbase\moviedb.json')
-    #userName = request.form["username"]
+    mdb = TinyDB(r'allBookings/dbase/moviedb.json')
+    username = request.form["username"]
     User = Query()
-    testing = mdb.search(User.username == 'admin')
+    testing = mdb.search(User.username == username)
     return jsonify(testing)
 
 

@@ -67,13 +67,13 @@ def choice():
 
 
 @app.route("/insertfoodorder", methods=['POST', 'GET'])
-def viewfood():
+def insertfood():
     viewfoodresult=request.form('/api/foodorder/view')
     return render_template('viewOrder.html')
 
 
 @app.route("/insertmovieticket", methods=['POST', 'GET'])
-def viewticket():
+def insertfticket():
     viewmovieresult=request.form()
     return render_template('viewBooking.html')
 
