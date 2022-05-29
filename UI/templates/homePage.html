@@ -16,7 +16,7 @@
     <h3>Select Movie Booking or Food Ordering:-</h3>
 
     <form action="/bookOrOrder" method="post" enctype="multipart/form-data">
-        <input type="hidden" id="username" name="username" value="{{fish}}">
+        <input type="hidden" id="username" name="username" value="{{user}}">
         <input type="radio" id="moviebooking" name="choosing" value="movie">
         <label for="moviebooking">Movie Booking</label><br>
         <input type="radio" id="foodordering" name="choosing" value="food">
@@ -25,6 +25,14 @@
     </form>
 
     <h3>View Movie Booking or Food Ordering:-</h3>
+    <form method="post" action="/viewmovieticket">
+        <input type="hidden" id="username" name="username" value="{{user}}">
+        <button type="submit">view booking</button>
+    </form>
+    <form method="post" action="/viewfoodorder">
+        <input type="hidden" name="username" value="{{user}}">
+        <button type="submit">View orders</button>
+    </form>
 </body>
 
 </html>

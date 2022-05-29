@@ -35,7 +35,7 @@
             <tr>
                 <td>Username:</td>
                 <td>
-                    <input type="text" name="username">
+                    <input type="hidden" name="username" value="{{user}}">
                 </td>
             </tr>
         </table>
@@ -88,10 +88,14 @@
         </table>
 
         <button type="submit" value="submit">Submit</button>
+
     </form>
-    <form method="post" action="/">
+    <br><br> {{message}}
+    <form method="post" action="/viewfoodorder">
+        <input type="hidden" name="username" value="{{user}}">
         <button type="submit">Home Page</button>
     </form>
+
 
 </body>
 

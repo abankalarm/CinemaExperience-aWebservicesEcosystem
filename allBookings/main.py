@@ -33,7 +33,7 @@ def insertfood():
 def insertmovie():
     mdb = TinyDB(r'allBookings/dbase/moviedb.json')
     userName = request.form["username"]
-    mName, mQuant = request.form["name"], int(request.form["moviequant"])
+    mName, mQuant = request.form["mname"], int(request.form["mquant"])
     abc1 = {'username': userName, 'mname': mName, 'mquant': str(mQuant)}
     try:
         mdb.insert(abc1)
@@ -53,10 +53,12 @@ def viewfood():
 
 
 @app.route("/api/movieticket/view", methods=['POST', 'GET'])
-def viewmovie(username):
+def viewmovie():
     # print(request.form)
     mdb = TinyDB(r'allBookings/dbase/moviedb.json')
     username = request.form["username"]
+    print("----------")
+    print(username)
     User = Query()
     testing = mdb.search(User.username == username)
     return jsonify(testing)

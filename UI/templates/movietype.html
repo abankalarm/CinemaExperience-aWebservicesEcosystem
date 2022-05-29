@@ -1,19 +1,21 @@
 <html>
-    <title>
-        MOVIE TYPE
-    </title>
-    <body>
-        <h1>Cinema Experience System</h1>
-        <h3>Select Movie Type:-</h3>
-        <form action="/qwerty" method="post" enctype="multipart/form-data">
-            <input type="hidden" id="username" name="username" value="{{fish}}">
-            <input type="radio" id="0" name="mtype" value="0">
-            <label for="moviebooking">Hindi</label><br>
-            <input type="radio" id="1" name="mtype" value="1">
-            <label for="foodordering">English</label><br>
-            <input type="radio" id="2" name="mtype" value="2">
-            <label for="foodordering">All</label><br>
-            <input type="submit" value="Submit">
-        </form>
-    </body>
+<title>
+    MOVIE TYPE
+</title>
+
+<body>
+    <h1>Cinema Experience System</h1>
+    <h3>Select Movie Language Type:-</h3>
+    <form action="/soap/catalog" method="post" enctype="multipart/form-data">
+        <input type="hidden" id="username" name="username" value="{{user}}">
+        <input type="radio" id="0" name="mtype" value="0">
+        <label for="0">Hindi</label><br>
+        <input type="radio" id="1" name="mtype" value="1">
+        <label for="1">English</label><br>
+        <input type="radio" id="2" name="mtype" value="2">
+        <label for="2">All</label><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
 </html>
