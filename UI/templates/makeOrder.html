@@ -1,10 +1,11 @@
 <html>
-    <title>
-        Make Food Order
-    </title>
-    <body>
+<title>
+    Make Food Order
+</title>
+
+<body>
     <h2>==========Price list==========</h2>
-        <table>
+    <table>
         <tr>
             <th>Food Item</th>
             <th></th>
@@ -12,33 +13,33 @@
         </tr>
         <tr>
             <td>Popcorn</td>
-                <td> - </td>
+            <td> - </td>
             <td>700.00</td>
         </tr>
         <tr>
             <td>Coke</td>
-                <td> - </td>
+            <td> - </td>
             <td>500.00</td>
         </tr>
         <tr>
             <td>Nachos</td>
-                <td> - </td>
+            <td> - </td>
             <td>300.00</td>
         </tr>
-        </table>
+    </table>
 
-        <br>
-        <h1>Food Order Form:-</h1>
-        <form name="tblform" action="/viewfoodorder" method="post" enctype="multipart/form-data">
-            <table>
+    <br>
+    <h1>Food Order Form:-</h1>
+    <form name="tblform" action="/insertfoodorder" method="post" enctype="multipart/form-data">
+        <table>
             <tr>
                 <td>Username:</td>
                 <td>
                     <input type="text" name="username">
                 </td>
             </tr>
-            </table>
-            <br>
+        </table>
+        <br>
         <table>
             <tr>
                 <th>Food Items</th>
@@ -48,11 +49,11 @@
             <tr>
                 <td>Item 1:</td>
                 <td>
-<!--                    <select id="item1" name="item1">-->
-<!--                        <option value="Popcorn">Popcorn</option>-->
-<!--                        <option value="Coke">Coke</option>-->
-<!--                        <option value="Nachos">Nachos</option>-->
-<!--                    </select>-->
+                    <!--                    <select id="item1" name="item1">-->
+                    <!--                        <option value="Popcorn">Popcorn</option>-->
+                    <!--                        <option value="Coke">Coke</option>-->
+                    <!--                        <option value="Nachos">Nachos</option>-->
+                    <!--                    </select>-->
                     Popcorn
                 </td>
                 <td>
@@ -62,23 +63,23 @@
             <tr>
                 <td>Item 2:</td>
                 <td>
-<!--                    <select id="item2" name="item2">-->
-<!--                        <option value="Popcorn">Popcorn</option>-->
-<!--                        <option value="Coke">Coke</option>-->
-<!--                        <option value="Nachos">Nachos</option>-->
-<!--                    </select>-->
+                    <!--                    <select id="item2" name="item2">-->
+                    <!--                        <option value="Popcorn">Popcorn</option>-->
+                    <!--                        <option value="Coke">Coke</option>-->
+                    <!--                        <option value="Nachos">Nachos</option>-->
+                    <!--                    </select>-->
                     Coke
                 </td>
-                <td><input  type="number" value="0" id="q2" name="Coke"></td>
+                <td><input type="number" value="0" id="q2" name="Coke"></td>
             </tr>
             <tr>
                 <td>Item 3:</td>
                 <td>
-<!--                    <select id="item3" name="item3">-->
-<!--                    <option value="Popcorn">Popcorn</option>-->
-<!--                    <option value="Coke">Coke</option>-->
-<!--                    <option value="Nachos">Nachos</option>-->
-<!--                    </select>-->
+                    <!--                    <select id="item3" name="item3">-->
+                    <!--                    <option value="Popcorn">Popcorn</option>-->
+                    <!--                    <option value="Coke">Coke</option>-->
+                    <!--                    <option value="Nachos">Nachos</option>-->
+                    <!--                    </select>-->
                     Nachos
                 </td>
                 <td><input type="number" value="0" id="q3" name="Nachos"></td>
@@ -86,11 +87,12 @@
 
         </table>
 
-            <button type="submit" value="submit">Submit</button>
-        </form>
-        <form method="post" action="/">
-            <button type="submit">Home Page</button>
-        </form>
+        <button type="submit" value="submit">Submit</button>
+    </form>
+    <form method="post" action="/">
+        <button type="submit">Home Page</button>
+    </form>
 
-    </body>
+</body>
+
 </html>

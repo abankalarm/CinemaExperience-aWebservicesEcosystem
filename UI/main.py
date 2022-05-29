@@ -68,9 +68,13 @@ def choice():
 
 @app.route("/insertfoodorder", methods=['POST', 'GET'])
 def insertfood():
-    viewfoodresult=request.form('/api/foodorder/view')
-    return render_template('viewOrder.html')
-
+    userName = str(request.form["username"])
+    abc = {'username':userName, 'Popcorn': int(request.form["Popcorn"]), 'Coke': int(request.form["Coke"]),
+           'Nachos': int(request.form["Nachos"])}
+    response = requests.post(booking_url + '/api/foodorder/insert', data = abc)
+    print(response)
+    message = response.json
+    return render_template('makeOrder.html', message=message)
 
 @app.route("/insertmovieticket", methods=['POST', 'GET'])
 def insertfticket():
