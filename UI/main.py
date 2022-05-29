@@ -27,11 +27,8 @@ def index1():
     try:
         if(len(response["access_token"])>10):
             access_token = response["access_token"]
-            print("got here")
             refresh_token = response["refresh_token"]
-            print("got here")
             message = response["message"]
-            print("got here")
             return render_template('homePage.html', access_token = response["access_token"], refresh_token = response["refresh_token"], message = response["message"])
     except:    
         return render_template('login.html', message = "Login failed")
