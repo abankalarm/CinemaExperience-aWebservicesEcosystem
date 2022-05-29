@@ -10,9 +10,9 @@ from suds.client import Client
 
 app = Flask(__name__)
 
-authservice_url = "http://127.0.0.1:5000"
-booking_url = "http://127.0.0.1:4500"
-catalog_url = "http://127.0.0.1:8000"
+authservice_url = "http://c2.rehacks.live:5000"
+booking_url = "http://c2.rehacks.live:4500"
+catalog_url = "http://c2.rehacks.live:8000"
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
@@ -126,4 +126,4 @@ def viewticket():
 ##  viewBooking.html and viewOrder.html are currently not being used
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 4000)
+    app.run(host='0.0.0.0',debug=True, port = 4000)

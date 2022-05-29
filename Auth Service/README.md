@@ -11,6 +11,6 @@ virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# serve back-end at localhost:5000
-FLASK_APP=run.py flask run
+# serve back-end at localhost:5000, NOW ITS TIME FOR HOSTING BITCHES
+FLASK_APP=run.py flask run --host=0.0.0.0
 ```
